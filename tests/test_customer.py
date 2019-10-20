@@ -10,6 +10,9 @@ class TestCustomer(unittest.TestCase):
     def setUp(self):
         self.customer = cust.Customer(3.00,
                                       4.2)
+        self.random_customers = []
+        for _ in range(10000):
+            self.random_customers.append(cust.Customer.get_random())
 
     def test_price_too_high(self):
         too_expensive = prod.Product("a",
@@ -45,7 +48,19 @@ class TestCustomer(unittest.TestCase):
             self.customer.will_purchase(great_product)
             )
                
-                                     
+    def test_random_quality_bounds(self):
+        qs = [customer.quality_threshold for customer in self.random_customers]
+        self.assertTrue(all([q > 0 for q in qs]))
+        self.assertTrue(all([q < 5 for q in qs]))
+
+    def test_random_quality_group(self):
+        qs = [customer.quality_threshold for customer in self.random_customers]
+        self.assertTrue(any([q > 0 and q < 1 for q in qs]))
+        self.assertTrue(any([q > 1 and q < 2 for q in qs]))
+        self.assertTrue(any([q > 2 and q < 3 for q in qs]))
+        self.assertTrue(any([q > 3 and q < 4 for q in qs]))
+        self.assertTrue(any([q > 4 and q < 5 for q in qs]))        
+
 
 if __name__ == '__main__':
     unittest.main()

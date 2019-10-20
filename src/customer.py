@@ -9,8 +9,8 @@ class Customer:
     def __str__(self):
         return "todo"
 
-    def will_purchase(product):
+    def will_purchase(self, product):
         return ( product.price <= self.price_threshold and
-                 produce.quality >= self.quality_threshold)
+                 product.quality >= self.quality_threshold)
              
 

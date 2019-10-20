@@ -13,3 +13,4 @@ class Product:
                                                 self.cost,
                                                 self.quality)
         return val
+    

@@ -13,3 +13,4 @@ class Customer:
         return ( product.price <= self.price_threshold and
                  produce.quality >= self.quality_threshold)
              
+

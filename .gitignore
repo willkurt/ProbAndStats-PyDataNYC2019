@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Emacs temp files
+*~
+
 # C extensions
 *.so
 

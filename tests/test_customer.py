@@ -11,7 +11,8 @@ class TestCustomer(unittest.TestCase):
         self.customer = cust.Customer(3.00,
                                       4.2)
         self.random_customers = []
-        for _ in range(10000):
+        self.n_rand = 10000
+        for _ in range(self.n_rand):
             self.random_customers.append(cust.Customer.get_random())
 
     def test_price_too_high(self):
@@ -61,6 +62,18 @@ class TestCustomer(unittest.TestCase):
         self.assertTrue(any([q > 3 and q < 4 for q in qs]))
         self.assertTrue(any([q > 4 and q < 5 for q in qs]))        
 
+    def test_random_price_threshold_bounds(self):
+        ps = [customer.price_threshold for customer in self.random_customers]
+        self.assertTrue(all([p > 0 for p in ps]))
+
+    def test_random_price_threshold_groups(self):
+        """
+        These are just general properties I want to be true
+        """
+        ps = [customer.price_threshold for customer in self.random_customers]
+        self.assertTrue(len([p for p in ps if p < 1]) < 0.1*self.n_rand,"too low")
+        self.assertTrue(len([p for p in ps if p > 50]) < 0.1*self.n_rand,"too high")
+        
 
 if __name__ == '__main__':
     unittest.main()

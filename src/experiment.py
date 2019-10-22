@@ -1,5 +1,6 @@
-from product import Product
-from customer import Customer
+from .product import Product
+from .customer import Customer
+import pandas as pd
 
 class Experiment:
     """
@@ -17,15 +18,36 @@ class Experiment:
             b_results = self._show_b_to(n)
         else:
             b_results = None
-        pass
+        results_df = pd.DataFrame()
+        if self.product_b:
+            results_df['a_purchased'] = a_results['purchased']
+            results_df['a_customer'] = a_results['customer']
+            results_df['b_purchased'] = b_results['purchased']
+            results_df['b_customer'] = b_results['customer']
+            
 
 
 
     def _show_a_to(self,n):
+        result = {
+            "purchased" : [],
+            "customer" : []
+        }
+        for i in range(n):
+            rand_cust = self.generate_random_customer()
+            result["purchased"].append(
+                rand_cust.will_purchase(self.product_a)
+                )
+            result["customer"].append(str(rand_cust))
+        return result
+
+    def _show_b_to(self,n):
         """
-        
+        We want the option to be able to simulate
+        different populations for 'a' and 'b'.
+        In this base class they are the same.
         """
-        pass
+        return self._show_a_to(n)
 
     def generate_random_customer(self):
         return Customer.get_random()

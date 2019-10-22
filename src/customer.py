@@ -3,8 +3,8 @@ import numpy as np
 class Customer:
     quality_min = 0
     quality_max = 5
-    price_mean = 6
-    price_sd = 2
+    price_mean = 1
+    price_sd = 0.75
     def __init__(self,
                  price_threshold,
                  quality_threshold):

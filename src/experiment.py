@@ -13,9 +13,9 @@ class Experiment:
 
 
     def show_to_customers(self,n_trials):
-        a_results = self._show_a_to(n)
+        a_results = self._show_a_to(n_trials)
         if self.product_b:
-            b_results = self._show_b_to(n)
+            b_results = self._show_b_to(n_trials)
         else:
             b_results = None
         results_df = pd.DataFrame()
@@ -24,8 +24,10 @@ class Experiment:
             results_df['a_customer'] = a_results['customer']
             results_df['b_purchased'] = b_results['purchased']
             results_df['b_customer'] = b_results['customer']
-            
-
+        else:
+            results_df['purchased'] = a_results['purchased']
+            results_df['customer'] = a_results['customer']
+        return results_df
 
 
     def _show_a_to(self,n):
@@ -50,4 +52,7 @@ class Experiment:
         return self._show_a_to(n)
 
     def generate_random_customer(self):
+        """
+        Other classes may want a more complex approach to generating customers
+        """
         return Customer.get_random()

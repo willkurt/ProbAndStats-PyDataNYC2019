@@ -23,5 +23,5 @@ class Customer:
     def get_random(cls):
         price = np.random.lognormal(cls.price_mean,cls.price_sd,1)
         quality = np.random.uniform(cls.quality_min,cls.quality_max,1)
-        return Customer(price,quality)
+        return cls(price,quality)
         

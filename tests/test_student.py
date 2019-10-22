@@ -32,4 +32,4 @@ class TestStudentCustomer(unittest.TestCase):
     def test_diff_in_max(self):
         max_cust = max([cust.price_threshold for cust in self.random_customers])
         max_st = max([st.price_threshold for st in self.random_student_customers])
-        self.assertTrue((max_cust - max_st) > 10)
+        self.assertTrue((max_cust - max_st) > 5)

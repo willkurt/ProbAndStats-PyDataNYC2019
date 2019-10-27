@@ -17,7 +17,7 @@ class MessyExperiment(Experiment):
     This means we must model this is we are going to make
     any decisions about which variant is better.
     """
-    def _show_with_students(self,n,rate):
+    def _show_with_students(self,n,rate,product):
         result = {
             "purchased" : [],
             "customer" : []
@@ -28,16 +28,16 @@ class MessyExperiment(Experiment):
             else:
                 rand_cust = Customer.get_random()
             result["purchased"].append(
-                rand_cust.will_purchase(self.product_a)
+                rand_cust.will_purchase(product)
                 )
             result["customer"].append(str(rand_cust))
         return result
         
     
     def _show_a_to(self,n):
-        return self._show_with_students(n,0.2)
+        return self._show_with_students(n,0.2,self.product_a)
 
     def _show_b_to(self,n):
-        return self._show_with_students(n,0.4)
+        return self._show_with_students(n,0.4,self.product_b)
 
     

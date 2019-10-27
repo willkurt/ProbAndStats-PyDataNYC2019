@@ -29,8 +29,7 @@ class Experiment:
             results_df['customer'] = a_results['customer']
         return results_df
 
-
-    def _show_a_to(self,n):
+    def _show_product_to(self,n,product):
         result = {
             "purchased" : [],
             "customer" : []
@@ -38,18 +37,17 @@ class Experiment:
         for i in range(n):
             rand_cust = self.generate_random_customer()
             result["purchased"].append(
-                rand_cust.will_purchase(self.product_a)
+                rand_cust.will_purchase(product)
                 )
             result["customer"].append(str(rand_cust))
         return result
+        
+    
+    def _show_a_to(self,n):
+        return self._show_product_to(n,self.product_a)
 
     def _show_b_to(self,n):
-        """
-        We want the option to be able to simulate
-        different populations for 'a' and 'b'.
-        In this base class they are the same.
-        """
-        return self._show_a_to(n)
+        return self._show_product_to(n,self.product_b)
 
     def generate_random_customer(self):
         """

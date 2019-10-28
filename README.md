@@ -8,11 +8,12 @@ This project contains a whirlwind introduction to probability and statistics tha
 
 1. clone this project to your local machine:
 
-`git clone git@github.com:willkurt/PyDataNYC2019.git`
+
+`git clone git@github.com:willkurt/ProbAndStats-PyDataNYC2019.git`
 
 2. Go into project directory:
 
-`cd PyDataNYC2019`
+`cd ProbAndStats-PyDataNYC2019`
 
 3. Create a virtual environment for this project
 

@@ -35,7 +35,7 @@ class MessyExperiment(Experiment):
         
     
     def _show_a_to(self,n):
-        return self._show_with_students(n,0.2,self.product_a)
+        return self._show_with_students(n,0.1,self.product_a)
 
     def _show_b_to(self,n):
         return self._show_with_students(n,0.4,self.product_b)
